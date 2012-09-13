@@ -152,6 +152,7 @@ class AboutRegularExpressions < EdgeCase::Koan
   end
 
   def test_sub_is_like_find_and_replace
+  #!! What is this crazy bracket notation? where does $1 come from?
     assert_equal 'one t-three', "one two-three".sub(/(t\w*)/) { $1[0, 1] }
   end
 
