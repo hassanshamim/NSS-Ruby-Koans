@@ -31,6 +31,12 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 def score(dice)
   # You need to write this method
+  points = []
+  (1..6).each { |i| points << 100 * i if dice.count( i ) >= 3 }   #Adds triplet scores
+  points.collect!{ |n| n == 100 ? 1000 : n }                      #Adjusts triple-ones score to 1000
+  points << ( dice.count( 1 ) % 3 ) * 100                         #Points for ones
+  points << ( dice.count( 5 ) % 3 ) * 50                          #Points for fives
+  points.reduce(:+)						  #Adds all earned points
 end
 
 class AboutScoringProject < EdgeCase::Koan

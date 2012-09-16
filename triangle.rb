@@ -14,6 +14,15 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+  #tests first!
+  raise TriangleError, 'Cannot have a triangle with a side of 0' if a == 0 or b == 0 or c == 0
+
+  raise TriangleError, 'Cannot have a triangle side with a negative length' if a < 0 or b < 0 or c < 0
+#!! is there a better way to do multiple comparisons to a single value?
+  unless a + b > c and b + c > a and c + a > b
+    raise TriangleError, 'Invalid side lengths'
+  end 
+
   if a == b and b == c
     :equilateral
   elsif a == b or b == c or a == c
